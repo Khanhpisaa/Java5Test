@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/san-pham/add" th:object="${sanPham}" method="post">
+    ID
+    <input type="text" name="id"  th:field="*{id}" readonly> <i th:errors="*{id}"></i> <br>
+    Ma San Pham
+    <input type="text" name="ma_san_pham" th:field="*{ma_san_pham}"><i th:errors="*{ma_san_pham}"></i>
+    <br>
+    Ten San Pham
+    <input type="text" name="ten_san_pham" th:field="*{ten_san_pham}"><i th:errors="*{ten_san_pham}"></i>
+    <br>
+    Trang Thai
+    <input type="radio" name="trang_thai" value="Hoat Dong">Hoat Dong
+    <input type="radio" name="trang_thai" value="Khong Hoat Dong" th:field="*{trang_thai}">Khong Hoat Dong <i th:errors="*{trang_thai}"></i>
+    <br>
+    Ma Danh Muc
+    <select name="danhMuc" th:field="*{danhMuc.id}">
+        <option
+                th:each="danhMuc : ${ListDM}"
+                th:value="${danhMuc.id}"
+                th:text="${danhMuc.ma_danh_muc}"
+        ></option>
+    </select>
+    <br>
+    Ten Danh Muc
+    <select name="danhMuc" th:field="*{danhMuc.id}">
+        <option
+                th:each="danhMuc : ${ListDM}"
+                th:value="${danhMuc.id}"
+                th:text="${danhMuc.ten_danh_muc}"
+        ></option>
+        <br>
+    </select>
+    <button type="submit">ADD</button>
+</form>
+<table border="1">
+    <thead>
+    <tr>
+        <td>ID</td>
+        <td>Ma San Pham</td>
+        <td>Ten San Pham</td>
+        <td>Trang Thai</td>
+        <td>Ngay Tao</td>
+        <td>Ngay Sua</td>
+        <td>Ma Danh Muc</td>
+        <td>Ten Danh Muc</td>
+        <td>Action</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="sanPham : ${ListSP}">
+        <td th:text="${sanPham.id}"></td>
+        <td th:text="${sanPham.ma_san_pham}"></td>
+        <td th:text="${sanPham.ten_san_pham}"></td>
+        <td th:text="${sanPham.trang_thai == 'Hoat Dong' ? 'Hoat Dong' : 'Khong Hoat Dong'}"></td>
+        <td th:text="${sanPham.ngay_tao}"></td>
+        <td th:text="${sanPham.ngay_sua}"></td>
+        <td th:text="${sanPham.danhMuc.ma_danh_muc}"></td>
+        <td th:text="${sanPham.danhMuc.ten_danh_muc}"></td>
+        <td>
+            <a th:href="@{|/san-pham/xoa/*{sanPham.id}|}">Xoa</a>
+            <a th:href="@{|/san-pham/detail/*{sanPham.id}|}">Chi Tiet</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

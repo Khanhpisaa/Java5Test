@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cập Nhật Size</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="text-center text-primary mb-4">Thêm Size</h1>
+    <form th:action="@{|/size/update/*{size.id}|}" method="post">
+        <div class="mb-3">
+            <label for="id" class="form-label">ID</label>
+            <input type="text" name="id" id="id" class="form-control" readonly
+            th:field="${size.id}">
+        </div>
+        <div class="mb-3">
+            <label for="ma_size" class="form-label">Mã Màu</label>
+            <input type="text" name="ma_size" id="ma_size" class="form-control"
+            th:field="${size.ma_size}">
+        </div>
+        <div class="mb-3">
+            <label for="ten_size" class="form-label">Tên Màu</label>
+            <input type="text" name="ten_size" id="ten_size" class="form-control"
+            th:field="${size.ten_size}">
+        </div>
+        <div class="mb-3">
+            <label for="ngay_tao" class="form-label">Ngày Tạo</label>
+            <input type="text" name="ngay_tao" id="ngay_tao" class="form-control"
+                   th:field="${size.ngay_tao}">
+        </div>
+        <div class="mb-3">
+            <label for="ngay_sua" class="form-label">Ngày Sửa</label>
+            <input type="text" name="ma_size" id="ngay_sua" class="form-control"
+                   th:field="${size.ngay_sua}">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Trạng Thái</label><br>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="trang_thai" value="Hoat dong"
+                th:field="${size.trang_thai}">
+                <label class="form-check-label">Hoạt động</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="trang_thai" value="Khong hoat dong"
+                th:field="${size.trang_thai}">
+                <label class="form-check-label">Không hoạt động</label>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Cập nhật Size</button>
+    </form>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

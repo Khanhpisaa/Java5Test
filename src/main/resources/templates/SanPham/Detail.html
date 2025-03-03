@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:action="@{|/san-pham/update/*{sanPham.id}|}" method="post">
+    Ma San Pham
+    <input type="text" name="ma_san_pham" th:field="${sanPham.ma_san_pham}"><br>
+    Ten San Pham
+    <input type="text" name="ten_san_pham" th:field="${sanPham.ten_san_pham}"><br>
+    Trang Thai
+    <input type="radio" name="trang_thai" value="Hoat Dong" th:field="${sanPham.trang_thai}">Hoat Dong
+    <input type="radio" name="trang_thai" value="Khong Hoat Dong" th:field="${sanPham.trang_thai}">Khong Hoat Dong <br>
+    Ngay Tao
+    <input type="date" name="ngay_tao" value="ngay_tao" th:field="${sanPham.ngay_tao}"><br>
+    Ngay Sua
+    <input type="date" name="ngay_sua" value="ngay_sua" th:field="${sanPham.ngay_sua}"><br>
+    Ma Danh Muc
+    <select name="danhMuc" th:field="${sanPham.danhMuc.id}">
+        <option
+                th:each="danhMuc : ${ListDM}"
+                th:value="${danhMuc.id}"
+                th:text="${danhMuc.ma_danh_muc}"
+        ></option>
+    </select>
+    Ten Danh Muc
+    <select name="danhMuc" th:field="${sanPham.danhMuc.id}">
+        <option
+                th:each="danhMuc : ${ListDM}"
+                th:value="${danhMuc.id}"
+                th:text="${danhMuc.ten_danh_muc}"
+        ></option>
+    </select>
+    <br>
+    <button type="submit">UPDATE</button>
+</form>
+</body>
+</html>
